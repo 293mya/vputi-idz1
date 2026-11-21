@@ -33,5 +33,8 @@ npm run build
 - `DESIGN.md` — дизайн-система и применение референсов;
 - `SELECTED_CONCEPT.png` — выбранный концепт;
 - `design/REFERENCES.md` — Google Maps, Ryanair и Aviasales: что взято как ориентир и как это применено;
+- `ARCHITECTURE.md` — устройство клиентского приложения и хранения данных;
+- `QA.md` — технические и ручные проверки;
+- `design/DESIGN_CODE.md` — правила реализации интерфейса.
 
 Тестовый PDF без личных данных находится в `output/pdf/demo-travel-ticket.pdf`.
