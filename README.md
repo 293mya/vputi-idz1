@@ -32,6 +32,7 @@ npm run build
 - `PRD.md` — идея, границы и основной сценарий;
 - `DESIGN.md` — дизайн-система и применение референсов;
 - `SELECTED_CONCEPT.png` — выбранный концепт;
+- `design/REFERENCES.md` — Google Maps, Ryanair и Aviasales: что взято как ориентир и как это применено;
 - `REFLECTION.md` — рефлексия по работе;
 - `VIDEO_SCRIPT.md` — сценарий итогового видео.
 
