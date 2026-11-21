@@ -6,3 +6,11 @@ dist/
 *.zip
 .DS_Store
 npm-debug.log*
+
+# Личные черновики для Google-формы, не часть публичного проекта
+REFLECTION.md
+VIDEO_SCRIPT.md
+ASSESSMENT.md
+QA.md
+ARCHITECTURE.md
+design/DESIGN_CODE.md
