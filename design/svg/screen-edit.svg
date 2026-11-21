@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="390" height="844" viewBox="0 0 390 844" role="img" aria-labelledby="title desc">
+  <title id="title">Экран Редактировать поездку</title>
+  <desc id="desc">Жёлтая форма редактирования, зелёное изменённое поле и действия отмены и сохранения.</desc>
+  <style>
+    text { font-family: Inter, "SF Pro Display", "Segoe UI", Arial, sans-serif; fill: #0B1324; }
+    text[fill="#FFFFFF"] { fill: #FFFFFF; }
+    .label { font-size: 13px; font-weight: 700; fill: #263247; }
+    .muted { fill: #7D8490; }
+  </style>
+  <rect width="390" height="844" fill="#FFFFFF"/>
+  <text x="20" y="56" font-size="34" font-weight="800" letter-spacing="-1.4">Редактировать</text>
+  <text x="20" y="82" font-size="14" class="muted">Изменённые поля отмечены зелёным</text>
+
+  <rect x="18" y="106" width="354" height="642" rx="28" fill="#FFF6D8"/>
+  <rect x="34" y="128" width="322" height="72" rx="18" fill="#FFFFFF"/>
+  <rect x="48" y="144" width="40" height="40" rx="12" fill="#E3EFFF"/>
+  <g transform="translate(58 154)" fill="none" stroke="#0877F9" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 17V1m-5 5 5-5 5 5M2 15v5h16v-5"/></g>
+  <text x="102" y="157" font-size="14" font-weight="800">ticket-barcelona-london.pdf</text>
+  <text x="102" y="179" font-size="12" class="muted">Нажмите, чтобы заменить</text>
+
+  <g transform="translate(34 216)">
+    <rect width="322" height="196" rx="20" fill="#FFFFFF"/>
+    <circle cx="22" cy="25" r="13" fill="#0877F9"/>
+    <text x="22" y="30" font-size="12" font-weight="800" text-anchor="middle" fill="#FFFFFF">A</text>
+    <text x="44" y="31" font-size="16" font-weight="800">Отправление</text>
+    <text x="16" y="64" class="label">Город</text>
+    <rect x="16" y="75" width="290" height="48" rx="13" fill="#FFFFFF" stroke="#E3E8EF"/>
+    <text x="30" y="105" font-size="14">Барселона</text>
+    <text x="16" y="148" class="label">Адрес</text>
+    <rect x="16" y="158" width="290" height="48" rx="13" fill="#EAF8F0" stroke="#2E9B63" stroke-width="2"/>
+    <text x="30" y="188" font-size="14">Терминал 2, стойка 18</text>
+    <rect x="227" y="134" width="79" height="22" rx="8" fill="#DDF3E7"/>
+    <text x="266" y="149" font-size="11" font-weight="800" text-anchor="middle" fill="#2E9B63">Изменено</text>
+  </g>
+
+  <g transform="translate(34 426)">
+    <rect width="322" height="156" rx="20" fill="#FFFFFF"/>
+    <circle cx="22" cy="25" r="13" fill="#0877F9"/>
+    <text x="22" y="30" font-size="12" font-weight="800" text-anchor="middle" fill="#FFFFFF">B</text>
+    <text x="44" y="31" font-size="16" font-weight="800">Прибытие</text>
+    <text x="16" y="64" class="label">Город</text>
+    <rect x="16" y="75" width="138" height="48" rx="13" fill="#FFFFFF" stroke="#E3E8EF"/>
+    <text x="30" y="105" font-size="14">Лондон</text>
+    <text x="168" y="64" class="label">Время</text>
+    <rect x="168" y="75" width="138" height="48" rx="13" fill="#FFFFFF" stroke="#E3E8EF"/>
+    <text x="182" y="105" font-size="14">17:00</text>
+  </g>
+
+  <rect x="34" y="600" width="322" height="52" rx="14" fill="#FFE9A6"/>
+  <text x="50" y="623" font-size="13" font-weight="800">2 ч 30 мин в пути</text>
+  <text x="50" y="642" font-size="11" fill="#6C5A1C">Проверьте время по билету</text>
+
+  <rect x="34" y="670" width="122" height="56" rx="16" fill="#FFFFFF" stroke="#E3E8EF"/>
+  <text x="95" y="705" font-size="15" font-weight="800" text-anchor="middle">Отмена</text>
+  <rect x="168" y="670" width="188" height="56" rx="16" fill="#0877F9"/>
+  <text x="262" y="705" font-size="15" font-weight="800" text-anchor="middle" fill="#FFFFFF">Сохранить</text>
+
+  <g transform="translate(0 766)">
+    <rect width="390" height="78" fill="#FFFFFF"/>
+    <line x1="0" y1="0" x2="390" y2="0" stroke="#E3E8EF"/>
+    <g transform="translate(98 13)" fill="none" stroke="#8DA5C9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M-12 4h24v6a5 5 0 0 0 0 10v6h-24v-6a5 5 0 0 0 0-10z"/><path d="M2 8v4m0 7v4"/></g>
+    <text x="98" y="60" font-size="12" font-weight="700" text-anchor="middle" fill="#8DA5C9">Поездки</text>
+    <g transform="translate(292 23)" stroke="#0877F9" stroke-width="2" stroke-linecap="round"><path d="M0-10v20M-10 0h20"/></g>
+    <text x="292" y="60" font-size="12" font-weight="800" text-anchor="middle" fill="#0877F9">Добавить</text>
+  </g>
+</svg>

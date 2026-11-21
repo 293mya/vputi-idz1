@@ -1,0 +1,31 @@
+{
+  "name": "travel-tickets",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1 --port 4173 --strictPort",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@mui/material": "^9.5.0",
+    "@mui/x-date-pickers": "^9.17.0",
+    "@radix-ui/themes": "^3.3.0",
+    "dayjs": "^1.11.23",
+    "pdfjs-dist": "^6.5.438",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "react-router-dom": "^7.9.6",
+    "tesseract.js": "^7.0.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^5.1.1",
+    "fake-indexeddb": "^6.2.4",
+    "vite": "^7.2.2",
+    "vitest": "^4.0.18"
+  }
+}

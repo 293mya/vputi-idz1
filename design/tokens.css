@@ -1,0 +1,30 @@
+:root {
+  --brand: #0877f9;
+  --brand-hover: #0669df;
+  --brand-soft: #e3efff;
+  --nearest: #ffe9a6;
+  --warning-bg: #fff7d8;
+  --warning-border: #f1d36e;
+  --edit-bg: #fff6d8;
+  --changed-bg: #f0fbf4;
+  --changed-border: #43aa72;
+  --changed-text: #167243;
+  --canvas: #ffffff;
+  --card: #f2f5f8;
+  --surface: #ffffff;
+  --ink: #0b1324;
+  --text: #263247;
+  --muted: #7d8490;
+  --line: #e3e8ef;
+  --danger: #c83d50;
+  --font-ui: Inter, "Segoe UI", sans-serif;
+  --control-height: 52px;
+  --button-height: 54px;
+  --touch-target: 44px;
+  --radius-field: 14px;
+  --radius-button: 16px;
+  --radius-section: 20px;
+  --radius-card: 28px;
+  --shadow-card: 0 12px 28px rgba(25, 43, 89, 0.1);
+  --shadow-popover: 0 16px 34px rgba(25, 43, 89, 0.16);
+}

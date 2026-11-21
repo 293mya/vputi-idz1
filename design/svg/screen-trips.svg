@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="390" height="844" viewBox="0 0 390 844" role="img" aria-labelledby="title desc">
+  <title id="title">Экран Мои поездки</title>
+  <desc id="desc">Две карточки поездок, вертикальные маршруты и нижняя навигация.</desc>
+  <defs>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="160%"><feDropShadow dx="0" dy="9" stdDeviation="10" flood-color="#192B59" flood-opacity="0.10"/></filter>
+    <style>
+      text { font-family: Inter, "SF Pro Display", "Segoe UI", Arial, sans-serif; fill: #0B1324; }
+      text[fill="#FFFFFF"] { fill: #FFFFFF; }
+      .muted { fill: #7D8490; }
+      .blue { fill: #0877F9; }
+    </style>
+  </defs>
+  <rect width="390" height="844" fill="#FFFFFF"/>
+  <text x="20" y="65" font-size="38" font-weight="800" letter-spacing="-1.8">Мои поездки</text>
+  <text x="20" y="103" font-size="13" font-weight="700" class="muted">ПТ, 1 ДЕКАБРЯ</text>
+
+  <g transform="translate(18 122)">
+    <rect width="354" height="386" rx="28" fill="#F2F5F8" filter="url(#shadow)"/>
+    <rect x="20" y="20" width="112" height="38" rx="12" fill="#E3EFFF"/>
+    <g transform="translate(34 29)" fill="none" stroke="#0877F9" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M20 14 12 11v6l2 2v2l-5-2-5 2v-2l2-2v-6L0 14v-2l6-5V2a3 3 0 0 1 6 0v5l8 5z"/>
+    </g>
+    <text x="66" y="45" font-size="14" font-weight="800" class="blue">Самолёт</text>
+    <rect x="144" y="20" width="176" height="38" rx="12" fill="#FFE9A6"/>
+    <text x="232" y="45" font-size="14" font-weight="800" text-anchor="middle">Ближайшая поездка</text>
+
+    <text x="20" y="98" font-size="25" font-weight="800" letter-spacing="-.8">06:20 · 1 декабря</text>
+
+    <line x1="36" y1="137" x2="36" y2="245" stroke="#0877F9" stroke-width="3"/>
+    <circle cx="36" cy="139" r="10" fill="#0877F9" stroke="#F2F5F8" stroke-width="4"/>
+    <circle cx="36" cy="245" r="10" fill="#0877F9" stroke="#F2F5F8" stroke-width="4"/>
+    <text x="62" y="145" font-size="22" font-weight="800">Барселона</text>
+    <text x="62" y="171" font-size="15" class="muted">Аэропорт Эль-Прат, BCN</text>
+    <text x="62" y="194" font-size="13" class="muted">Терминал 1</text>
+    <text x="62" y="251" font-size="22" font-weight="800">Лондон</text>
+    <text x="62" y="277" font-size="15" class="muted">Аэропорт Станстед, STN</text>
+
+    <rect x="20" y="308" width="314" height="58" rx="16" fill="#0877F9"/>
+    <text x="177" y="344" font-size="17" font-weight="800" text-anchor="middle" fill="#FFFFFF">Открыть билет ↗</text>
+  </g>
+
+  <text x="20" y="545" font-size="13" font-weight="700" class="muted">СБ, 3 ДЕКАБРЯ</text>
+  <g transform="translate(18 563)">
+    <rect width="354" height="190" rx="28" fill="#F2F5F8"/>
+    <rect x="20" y="20" width="98" height="38" rx="12" fill="#E3EFFF"/>
+    <g transform="translate(32 27)" fill="none" stroke="#0877F9" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="1" y="0" width="21" height="25" rx="4"/><path d="M1 11h21M6 25l-3 4m14-4 3 4M7 19h1m8 0h1"/>
+    </g>
+    <text x="62" y="45" font-size="14" font-weight="800" class="blue">Поезд</text>
+    <text x="20" y="98" font-size="25" font-weight="800">09:10 · 3 декабря</text>
+    <text x="20" y="137" font-size="18" font-weight="800">Брюссель → Роттердам</text>
+    <text x="20" y="164" font-size="14" class="muted">Брюссель-Миди · Центральный вокзал</text>
+  </g>
+
+  <g transform="translate(0 766)">
+    <rect width="390" height="78" fill="#FFFFFF"/>
+    <line x1="0" y1="0" x2="390" y2="0" stroke="#E3E8EF"/>
+    <g transform="translate(98 13)" fill="none" stroke="#0877F9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M-12 4h24v6a5 5 0 0 0 0 10v6h-24v-6a5 5 0 0 0 0-10z"/><path d="M2 8v4m0 7v4"/>
+    </g>
+    <text x="98" y="60" font-size="12" font-weight="800" text-anchor="middle" class="blue">Поездки</text>
+    <g transform="translate(292 23)" stroke="#8DA5C9" stroke-width="2" stroke-linecap="round"><path d="M0-10v20M-10 0h20"/></g>
+    <text x="292" y="60" font-size="12" font-weight="700" text-anchor="middle" fill="#8DA5C9">Добавить</text>
+  </g>
+</svg>
