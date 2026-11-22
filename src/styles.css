@@ -208,6 +208,21 @@ button, a, input, label { -webkit-tap-highlight-color: transparent; }
   box-shadow: none;
 }
 .trip-search-field .rt-TextFieldInput:focus { box-shadow: none; }
+.search-clear-button {
+  display: grid;
+  width: 30px;
+  height: 30px;
+  flex: 0 0 auto;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: #edf3fa;
+  color: #64748b;
+  cursor: pointer;
+}
+.search-clear-button:hover { background: #dcecff; color: var(--brand); }
+.search-clear-button:focus-visible { outline: 3px solid rgba(8, 119, 249, 0.24); outline-offset: 2px; }
 
 .trip-filter { display: grid; gap: 6px; min-width: 0; color: #71809a; font-size: 0.7rem; font-weight: 760; }
 .trip-filter select, .trip-filter input[type="date"] {
@@ -223,6 +238,30 @@ button, a, input, label { -webkit-tap-highlight-color: transparent; }
   font-weight: 680;
 }
 .trip-filter select:focus, .trip-filter input[type="date"]:focus { border-color: var(--brand); outline: 3px solid rgba(8, 119, 249, 0.13); outline-offset: 0; }
+
+.trip-search-actions {
+  display: flex;
+  grid-column: 1 / -1;
+  flex-wrap: wrap;
+  gap: 9px;
+  align-items: center;
+  padding-top: 2px;
+}
+.trip-search-results { margin-right: auto; color: #38506f; font-size: 0.78rem; font-weight: 800; }
+.trip-search-hint { width: 100%; color: #71809a; font-size: 0.72rem; line-height: 1.35; }
+.reset-filters-button {
+  min-height: 40px;
+  padding: 0 11px;
+  border: 0;
+  border-radius: 12px;
+  background: transparent;
+  color: #5f6d82;
+  font-size: 0.8rem;
+  font-weight: 760;
+  cursor: pointer;
+}
+.reset-filters-button:hover { background: rgba(255, 255, 255, 0.8); color: var(--ink); }
+.find-trips-button.rt-Button { min-height: 42px; padding-inline: 16px; cursor: pointer; }
 
 .page-header h1 {
   margin: 0;
@@ -1031,6 +1070,20 @@ button, a, input, label { -webkit-tap-highlight-color: transparent; }
   gap: 10px;
   align-items: center;
 }
+
+.form-validation-error {
+  display: grid;
+  width: 100%;
+  gap: 3px;
+  padding: 13px 14px;
+  border: 1px solid #efb7c0;
+  border-radius: 14px;
+  background: #fff1f3;
+  color: var(--danger);
+  font-size: 0.82rem;
+  line-height: 1.45;
+}
+.form-validation-error strong { font-weight: 850; }
 
 .form-save-error {
   flex: 0 0 100%;

@@ -230,6 +230,19 @@ function formatScheduleDate(date) {
   return `${shortDate}, ${weekday}`
 }
 
+function formatSearchResult(count) {
+  const lastTwoDigits = count % 100
+  const lastDigit = count % 10
+  const noun = lastTwoDigits >= 11 && lastTwoDigits <= 14
+    ? 'поездок'
+    : lastDigit === 1
+      ? 'поездка'
+      : lastDigit >= 2 && lastDigit <= 4
+        ? 'поездки'
+        : 'поездок'
+  return `${count} ${noun}`
+}
+
 function Icon({ name, size = 24 }) {
   const paths = {
     plane: <path d="M21.2 16.2 13 13.1V19l2.1 1.5V22L12 21l-3.1 1v-1.5L11 19v-5.9l-8.2 3.1v-2L11 9V3.7a1 1 0 0 1 2 0V9l8.2 5.2v2Z" />,
@@ -246,6 +259,7 @@ function Icon({ name, size = 24 }) {
     lock: <><rect x="5" y="10" width="14" height="11" rx="2" /><path d="M8 10V7a4 4 0 0 1 8 0v3" /></>,
     logout: <><path d="M10 5H5v14h5M14 8l4 4-4 4m4-4H9" /></>,
     search: <><circle cx="10.8" cy="10.8" r="6.3" /><path d="m16 16 4 4" /></>,
+    close: <path d="m6 6 12 12M18 6 6 18" />,
   }
 
   return (
@@ -278,9 +292,12 @@ function TripsPage({ trips, onDeleteTrip, onLogout }) {
   const navigate = useNavigate()
   const [tripToDelete, setTripToDelete] = useState(null)
   const [pastOpen, setPastOpen] = useState(false)
-  const [query, setQuery] = useState('')
-  const [transport, setTransport] = useState('all')
-  const [date, setDate] = useState('')
+  const [filters, setFilters] = useState({ query: '', transport: 'all', date: '' })
+  const [appliedFilters, setAppliedFilters] = useState({ query: '', transport: 'all', date: '' })
+  const { query, transport, date } = appliedFilters
+  const hasActiveFilters = Boolean(query || transport !== 'all' || date)
+  const hasDraftFilters = Boolean(filters.query || filters.transport !== 'all' || filters.date)
+  const filtersChanged = filters.query !== query || filters.transport !== transport || filters.date !== date
   const filteredTrips = useMemo(() => trips.filter((trip) => {
     const text = `${trip.originCity} ${trip.destinationCity} ${trip.originPlace} ${trip.destinationPlace}`.toLocaleLowerCase('ru-RU')
     return (!query || text.includes(query.toLocaleLowerCase('ru-RU')))
@@ -300,6 +317,27 @@ function TripsPage({ trips, onDeleteTrip, onLogout }) {
       pastTripsCount: pastTrips.length,
     }
   }, [filteredTrips])
+
+  function updateFilter(name, value) {
+    setFilters((current) => ({ ...current, [name]: value }))
+  }
+
+  function applyFilters() {
+    setAppliedFilters(filters)
+    setPastOpen(false)
+  }
+
+  function clearQuery() {
+    setFilters((current) => ({ ...current, query: '' }))
+    setAppliedFilters((current) => ({ ...current, query: '' }))
+  }
+
+  function resetFilters() {
+    const initialFilters = { query: '', transport: 'all', date: '' }
+    setFilters(initialFilters)
+    setAppliedFilters(initialFilters)
+    setPastOpen(false)
+  }
 
   function renderGroups(groups) {
     return groups.map((group) => (
@@ -379,20 +417,27 @@ function TripsPage({ trips, onDeleteTrip, onLogout }) {
       <section className="trip-tools" aria-label="Поиск и фильтры">
         <div className="trip-tools-heading">
           <span>Найти маршрут</span>
-          <small>По городу, месту или дате</small>
+          <small>Ищите по маршруту, дате или транспорту</small>
         </div>
         <div className="trip-search-field">
           <Icon name="search" size={19} />
-          <TextField.Root aria-label="Поиск по городу или месту" placeholder="Город или место" value={query} onChange={(event) => setQuery(event.target.value)} />
+          <TextField.Root aria-label="Поиск по городу или месту" placeholder="Город или место" value={filters.query} onChange={(event) => updateFilter('query', event.target.value)} />
+          {filters.query && <button className="search-clear-button" type="button" aria-label="Очистить поисковый запрос" onClick={clearQuery}><Icon name="close" size={18} /></button>}
         </div>
         <label className="trip-filter">
           <span>Транспорт</span>
-          <select aria-label="Фильтр по транспорту" value={transport} onChange={(event) => setTransport(event.target.value)}><option value="all">Все поездки</option><option value="train">Поезд</option><option value="plane">Самолёт</option><option value="bus">Автобус</option></select>
+          <select aria-label="Фильтр по транспорту" value={filters.transport} onChange={(event) => updateFilter('transport', event.target.value)}><option value="all">Все поездки</option><option value="train">Поезд</option><option value="plane">Самолёт</option><option value="bus">Автобус</option></select>
         </label>
         <label className="trip-filter">
           <span>Дата</span>
-          <input aria-label="Фильтр по дате" type="date" value={date} onChange={(event) => setDate(event.target.value)} />
+          <input aria-label="Фильтр по дате" type="date" value={filters.date} onChange={(event) => updateFilter('date', event.target.value)} />
         </label>
+        <div className="trip-search-actions">
+          <span className="trip-search-results" aria-live="polite">{hasActiveFilters ? `Найдено: ${formatSearchResult(filteredTrips.length)}` : `Все поездки: ${formatSearchResult(trips.length)}`}</span>
+          {filtersChanged && <span className="trip-search-hint">Нажмите «Найти», чтобы применить фильтры</span>}
+          {hasDraftFilters && <button className="reset-filters-button" type="button" onClick={resetFilters}>Сбросить</button>}
+          <Button className="find-trips-button" type="button" onClick={applyFilters}><Icon name="search" size={17} />Найти</Button>
+        </div>
       </section>
 
       {upcomingGroups.length === 0 && pastGroups.length === 0 ? (
@@ -750,6 +795,7 @@ function TripFormPage({ mode = 'add', initialTrip = null, onSave, onUnsavedChang
     ? changedFields.size > 0
     : Boolean(form.ticket || form.originCity || form.originPlace || form.originAddress || form.destinationCity || form.destinationPlace || form.destinationAddress || form.date || form.time || form.arrivalDate || form.arrivalTime || form.stopsCount || form.travelNumber || form.terminal || form.platform)
   const durationPreview = formatDuration(form)
+  const validationMessages = Object.values(errors).filter(Boolean)
 
   useEffect(() => { unsavedChangeRef.current = onUnsavedChange }, [onUnsavedChange])
   useEffect(() => () => unsavedChangeRef.current?.(false), [])
@@ -902,7 +948,7 @@ function TripFormPage({ mode = 'add', initialTrip = null, onSave, onUnsavedChang
     if (!form.destinationPlace.trim()) nextErrors.destinationPlace = 'Укажите место прибытия'
     if (!form.date) nextErrors.date = 'Выберите дату отправления'
     if (!form.time) nextErrors.time = 'Выберите время отправления'
-    if (form.arrivalDate && !form.arrivalTime) nextErrors.arrivalTime = 'Выберите время прибытия'
+    if (form.arrivalDate && !form.arrivalTime) nextErrors.arrivalTime = 'Выберите время прибытия по билету'
     if (!form.arrivalDate && form.arrivalTime) nextErrors.arrivalDate = 'Выберите дату прибытия'
     const arrivalValidationError = getArrivalValidationError(form)
     if (arrivalValidationError) nextErrors[arrivalValidationError.field] = arrivalValidationError.message
@@ -1131,6 +1177,12 @@ function TripFormPage({ mode = 'add', initialTrip = null, onSave, onUnsavedChang
         </section>
 
         <div className="form-actions">
+          {validationMessages.length > 0 && (
+            <div className="form-validation-error" role="alert">
+              <strong>{isEdit ? 'Сохранить изменения нельзя.' : 'Добавить поездку нельзя.'}</strong>
+              <span>Проверьте поля: {validationMessages.join(' ')}</span>
+            </div>
+          )}
           {saveError && <p className="form-save-error" role="alert">{saveError}</p>}
           {isEdit && <Button type="button" color="gray" variant="soft" onClick={() => {
             if (onRequestNavigation) onRequestNavigation(() => navigate('/'), hasChanges)
