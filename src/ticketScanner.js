@@ -62,10 +62,22 @@ export function parseTicketText(text) {
     detected.push(`Дата отправления: ${dateMatch[1]} ${dateMatch[2]} ${dateMatch[3]}`)
   }
 
+  const arrivalDateMatch = normalized.match(/(?:ДАТА\s+(?:ПРИБЫТИЯ|ПРИЛ[ЕЁ]ТА)|ARRIVAL\s+DATE)\s*(\d{1,2})\s+(января|февраля|марта|апреля|мая|июня|июля|августа|сентября|октября|ноября|декабря)\s+(20\d{2})\b/i)
+  if (arrivalDateMatch) {
+    fields.arrivalDate = toIsoDate(arrivalDateMatch[1], arrivalDateMatch[2], arrivalDateMatch[3])
+    detected.push(`Дата прибытия: ${arrivalDateMatch[1]} ${arrivalDateMatch[2]} ${arrivalDateMatch[3]}`)
+  }
+
   const departureMatch = normalized.match(/(?:ВЫЛЕТ|ОТПРАВЛЕНИЕ|DEPARTURE)\s*(\d{1,2}:\d{2})/i)
   if (departureMatch) {
     fields.time = departureMatch[1].padStart(5, '0')
     detected.push(`Время отправления: ${fields.time}`)
+  }
+
+  const arrivalTimeMatch = normalized.match(/(?:ПРИБЫТИЕ|ПРИЛ[ЕЁ]Т|ARRIVAL)\s*(\d{1,2}:\d{2})/i)
+  if (arrivalTimeMatch) {
+    fields.arrivalTime = arrivalTimeMatch[1].padStart(5, '0')
+    detected.push(`Время прибытия: ${fields.arrivalTime}`)
   }
 
   const flightMatch = normalized.match(/(?:РЕЙС|FLIGHT)\s*([A-Z]{2}\s?\d{1,4})/i)

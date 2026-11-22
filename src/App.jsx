@@ -7,7 +7,7 @@ import { clearAuth, loadAuth, loadTrips, removeTrip, saveAuth, saveTrip } from '
 import { scanTicketPdf } from './ticketScanner.js'
 import { searchGlobalPlaces } from './placeSearch.js'
 import { findRailStops } from './routeStops.js'
-import { findNearestTripId, formatDuration, formatStopsCount, groupTrips, isTripPast, splitTripsByStatus } from './tripUtils.js'
+import { findNearestTripId, formatDuration, formatStopsCount, getArrivalValidationError, groupTrips, isTripPast, splitTripsByStatus } from './tripUtils.js'
 import { DEMO_EMAIL, DEMO_PASSWORD, validateDemoCredentials } from './demoAuth.js'
 
 const TRANSPORTS = {
@@ -904,9 +904,8 @@ function TripFormPage({ mode = 'add', initialTrip = null, onSave, onUnsavedChang
     if (!form.time) nextErrors.time = 'Выберите время отправления'
     if (form.arrivalDate && !form.arrivalTime) nextErrors.arrivalTime = 'Выберите время прибытия'
     if (!form.arrivalDate && form.arrivalTime) nextErrors.arrivalDate = 'Выберите дату прибытия'
-    if (form.arrivalDate && form.arrivalTime && !durationPreview) {
-      nextErrors.arrivalTime = 'Прибытие должно быть позже отправления'
-    }
+    const arrivalValidationError = getArrivalValidationError(form)
+    if (arrivalValidationError) nextErrors[arrivalValidationError.field] = arrivalValidationError.message
     if (form.transport === 'train' && form.stopsCount !== '') {
       const stopsCount = Number(form.stopsCount)
       if (!Number.isInteger(stopsCount) || stopsCount < 0 || stopsCount > 99) {

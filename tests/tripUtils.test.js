@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { findNearestTripId, formatDuration, formatStopsCount, groupTrips, isTripPast, sortTrips, sortTripsForDisplay, splitTripsByStatus } from '../src/tripUtils.js'
+import { findNearestTripId, formatDuration, formatStopsCount, getArrivalValidationError, groupTrips, isTripPast, sortTrips, sortTripsForDisplay, splitTripsByStatus } from '../src/tripUtils.js'
 
 function trip(id, date, time, arrivalDate = '', arrivalTime = '') {
   return { id, date, time, arrivalDate, arrivalTime }
@@ -36,6 +36,24 @@ describe('логика поездок', () => {
     expect(formatDuration(trip('overnight', '2027-04-01', '23:30', '2027-04-02', '00:15'))).toBe('45 мин')
     expect(formatDuration(trip('missing', '2027-04-01', '14:30'))).toBeNull()
     expect(formatDuration(trip('early', '2027-04-01', '14:30', '2027-04-01', '14:00'))).toBeNull()
+  })
+
+  it('показывает ошибку у даты или времени прибытия по причине ошибки', () => {
+    expect(getArrivalValidationError({
+      date: '2027-04-02', time: '09:00', arrivalDate: '2027-04-01', arrivalTime: '18:00',
+    })).toEqual({
+      field: 'arrivalDate', message: 'Дата прибытия должна быть не раньше даты отправления',
+    })
+
+    expect(getArrivalValidationError({
+      date: '2027-04-02', time: '09:00', arrivalDate: '2027-04-02', arrivalTime: '08:30',
+    })).toEqual({
+      field: 'arrivalTime', message: 'Время прибытия должно быть позже времени отправления',
+    })
+
+    expect(getArrivalValidationError({
+      date: '2027-04-02', time: '09:00', arrivalDate: '2027-04-03', arrivalTime: '08:30',
+    })).toBeNull()
   })
 
   it('склоняет число остановок', () => {

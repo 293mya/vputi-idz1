@@ -25,6 +25,26 @@ export function formatDuration(trip) {
   return `${hours} ч ${rest} мин`
 }
 
+export function getArrivalValidationError({ date, time, arrivalDate, arrivalTime }) {
+  if (!date || !time || !arrivalDate || !arrivalTime) return null
+
+  if (arrivalDate < date) {
+    return {
+      field: 'arrivalDate',
+      message: 'Дата прибытия должна быть не раньше даты отправления',
+    }
+  }
+
+  if (arrivalDate === date && arrivalTime <= time) {
+    return {
+      field: 'arrivalTime',
+      message: 'Время прибытия должно быть позже времени отправления',
+    }
+  }
+
+  return null
+}
+
 export function formatStopsCount(count) {
   if (count === null || count === undefined || count === '') return null
 

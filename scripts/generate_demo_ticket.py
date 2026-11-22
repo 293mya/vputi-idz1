@@ -48,7 +48,7 @@ def build_ticket():
     register_fonts()
 
     qr = qrcode.QRCode(version=3, box_size=8, border=1)
-    qr.add_data("DEMO-TICKET|VPUTI|BCN-STN|2026-12-01|0620|UX2601")
+    qr.add_data("DEMO-TICKET|VPUTI|BCN-STN|2026-12-01|0620|2026-12-01|0845|UX2601")
     qr.make(fit=True)
     qr.make_image(fill_color="#0B1324", back_color="white").save(QR_PATH)
 
@@ -114,14 +114,12 @@ def build_ticket():
     c.drawString(left + 116, route_y - 18, "Лондон, Станстед")
 
     details_y = route_y - 58
-    draw_label(c, left, details_y, "Дата", "1 декабря 2026")
-    draw_label(c, left + 128, details_y, "Вылет", "06:20")
-    draw_label(c, left + 256, details_y, "Посадка", "05:40")
+    draw_label(c, left, details_y, "Дата вылета", "1 декабря 2026", width=154)
+    draw_label(c, left + 184, details_y, "Вылет", "06:20", width=108)
 
     lower_y = details_y - 55
-    draw_label(c, left, lower_y, "Пассажир", "Иван Петров")
-    draw_label(c, left + 128, lower_y, "Рейс", "UX 2601")
-    draw_label(c, left + 256, lower_y, "Место", "14A")
+    draw_label(c, left, lower_y, "Дата прибытия", "1 декабря 2026", width=154)
+    draw_label(c, left + 184, lower_y, "Прилёт", "08:45", width=108)
 
     qr_size = 88
     qr_x = card_x + card_w - qr_size - 29
